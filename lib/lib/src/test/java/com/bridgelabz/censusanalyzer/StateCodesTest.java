@@ -10,7 +10,8 @@ public class StateCodesTest {
 	private static final String INDIA_STATES_CSV_FILE_PATH = "./src/test/resources/IndiaStateCode.csv";
 	private static final String WRONG_CSV_FILE_PATH = "./src/main/resources/IndiaStateCensusData.csv";
 	private static final String INDIAN_CENSUS_EMPTY_FILE = "./src/test/resources/EmptyFile.csv";
-	private static final String INDIAN_STATES_CSV_WRONG_DELIMITER = "./src/test/resources/IndiaStateCode_WrongDelimiter.csv";
+	private static final String INDIAN_STATES_CSV_WRONG_DELIMITER = "./src/test/resources/IndiaStateCode_WrongHeader.csv";
+	private static final String INDIAN_STATES_CSV_WRONG_HEADER = "./src/test/resources/IndiaStateCode_WrongDelimiter.csv";
 	
 	@Test
     public void givenIndianStatesCSVFileReturnsCorrectRecords() {
@@ -52,6 +53,16 @@ public class StateCodesTest {
         	StateCensusAnalyser censusAnalyser = new StateCensusAnalyser();
             int numOfRecords = censusAnalyser.loadStateCode(INDIAN_STATES_CSV_WRONG_DELIMITER);
             assertEquals(true,false);
+        } catch (CensusAnalyserException e) {
+            assertEquals(CensusAnalyserException.ExceptionType.CSV_FILE_INTERNAL_ISSUES, e.type);
+        }
+    }
+	
+	@Test
+    public void givenMissingHeader_InIndiaCensusData_ShouldReturnCustomExceptionType() {
+        try {
+        	StateCensusAnalyser censusAnalyser = new StateCensusAnalyser();
+            int numOfRecords = censusAnalyser.loadStateCode(INDIAN_STATES_CSV_WRONG_HEADER);
         } catch (CensusAnalyserException e) {
             assertEquals(CensusAnalyserException.ExceptionType.CSV_FILE_INTERNAL_ISSUES, e.type);
         }
