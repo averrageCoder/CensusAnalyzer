@@ -9,6 +9,7 @@ public class StateCodesTest {
 	
 	private static final String INDIA_STATES_CSV_FILE_PATH = "./src/test/resources/IndiaStateCode.csv";
 	private static final String WRONG_CSV_FILE_PATH = "./src/test/resources/IndiaStateCensusData.csv";
+	private static final String INDIAN_CENSUS_EMPTY_FILE = "./src/test/resources/EmptyFile.csv";
 	
 	@Test
     public void givenIndianStatesCSVFileReturnsCorrectRecords() {
@@ -32,14 +33,14 @@ public class StateCodesTest {
         }
     }
 	
-//	@Test
-//    public void givenEmptyCsvFile_ShouldReturnCustomExceptionType() {
-//        try {
-//        	StateCensusAnalyser censusAnalyser = new StateCensusAnalyser();
-//            int numOfRecords = censusAnalyser.loadIndiaCensusData(INDIAN_CENSUS_EMPTY_FILE);
-//        } catch (CensusAnalyserException e) {
-//            assertEquals(CensusAnalyserException.ExceptionType.CSV_FILE_INTERNAL_ISSUES, e.type);
-//        }
-//    }
+	@Test
+    public void givenEmptyCsvFile_ShouldReturnCustomExceptionType() {
+        try {
+        	StateCensusAnalyser censusAnalyser = new StateCensusAnalyser();
+            int numOfRecords = censusAnalyser.loadIndiaCensusData(INDIAN_CENSUS_EMPTY_FILE);
+        } catch (CensusAnalyserException e) {
+            assertEquals(CensusAnalyserException.ExceptionType.CSV_FILE_INTERNAL_ISSUES, e.type);
+        }
+    }
 	
 }
