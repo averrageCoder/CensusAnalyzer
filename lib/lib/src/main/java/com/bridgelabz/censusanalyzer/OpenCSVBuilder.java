@@ -13,14 +13,18 @@ public class OpenCSVBuilder implements ICSVBuilder{
 		   return this.getCSVBean(reader,csvClass).iterator();
 	   }
 	   catch (RuntimeException e) {
-		   e.printStackTrace();
 		   throw new CSVBuilderException(e.getMessage(), CSVBuilderException.ExceptionType.CSV_FILE_INTERNAL_ISSUES);
 	   }
     }
 
     @Override
     public <E> List<E> getCSVFileList(Reader reader, Class<E> csvClass) throws CSVBuilderException {
-       return this.getCSVBean(reader,csvClass).parse();
+    	try {
+    		return this.getCSVBean(reader,csvClass).parse();
+    	}
+    	catch (RuntimeException e) {
+    		throw new CSVBuilderException(e.getMessage(), CSVBuilderException.ExceptionType.CSV_FILE_INTERNAL_ISSUES);
+    	}
 
     }
 
