@@ -13,7 +13,7 @@ public class CensusAnalyzerTest {
 	private static final String INDIAN_CENSUS_EMPTY_FILE = "./src/test/resources/EmptyFile.csv";
 	private static final String INDIAN_CENSUS_CSV_WRONG_DELIMITER = "./src/test/resources/IndiaStateCensusDataWrongDelimiter.csv";
 	private static final String INDIAN_CENSUS_CSV_WRONG_HEADER = "./src/test/resources/IndiaStateCensusDataWrongHeader.csv";
-
+	
     @Test
     public void givenIndianCensusCSVFileReturnsCorrectRecords() {
         try {
